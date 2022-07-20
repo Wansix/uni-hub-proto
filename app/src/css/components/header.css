@@ -1,0 +1,49 @@
+.header {
+  height: 80px;
+  background-color: rgb(24, 202, 110);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 5px;
+}
+
+.header__home {
+  width: 220px;
+  background-color: beige;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header__home a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  color: black;
+  text-decoration: none;
+}
+
+.header__home img {
+  margin-right: 20px;
+  height: 40px;
+  width: 40px;
+}
+
+.header__home h1 {
+  font-size: 20px;
+  font-weight: 600;
+  padding-top: 5px;
+}
+
+.header__menu {
+  margin-left: 10px;
+  width: 100%;
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+}
+
+.header__menu .nav-link {
+  color: black;
+  margin-left: 10px;
+}

@@ -1,0 +1,27 @@
+.wallet-connect {
+  background-color: turquoise;
+  height: 100px;
+  display: flex;
+}
+
+.profile__profile {
+  margin-top: 10px;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: antiquewhite;
+}
+
+.profile__profile img {
+  height: 150px;
+  width: 150px;
+  border-radius: 30%;
+}
+
+.profile__Info {
+  display: flex;
+  flex-direction: column;
+}
