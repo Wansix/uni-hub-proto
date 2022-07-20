@@ -14,7 +14,7 @@ module.exports = {
   },
 
   tokenURI: async (setProfileImgUrl) => {
-    console.log("tokenURI!");
+    // console.log("tokenURI!");
     const caver = new Caver(window.klaytn);
     const unihubNFTContract = new caver.klay.Contract(
       contractABI,

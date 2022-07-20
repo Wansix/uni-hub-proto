@@ -4,19 +4,55 @@ import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
+
+const kaikasApi = require("../api/kaikasApi.js");
 const headers = { withCredentials: true };
 
-export const WriteBoard = () => {
-  //   const [writingContent, setWritingContent] = useState({
-  //     title: "",
-  //     content: "",
-  //   });
+const unihubServerURL = "http://localhost:8080";
 
+export const WriteBoard = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const writeBoard = () => {
-    console.log("writeBoard!!");
+    console.log("title", title);
+    console.log("content", content);
+
+    if (title === undefined || title === "") {
+      alert("글 제목을 입력 해주세요.");
+      // title.focus();
+      return;
+    } else if (content === undefined || content === "") {
+      alert("글 내용을 입력 해주세요.");
+      // content.focus();
+      return;
+    }
+
+    const address = kaikasApi.getCurrentAccount();
+    if (address === 0) {
+      alert("지갑을 연결 해주세요.");
+      return;
+    }
+
+    // console.log("query", this.props.location.query);
+    const url = `${unihubServerURL}/board/write`;
+    const send_param = {
+      headers,
+      // id: this.props.location.query._id,
+      title: title,
+      content: content,
+      address: address,
+    };
+
+    axios.post(url, send_param).then((result) => {
+      console.log(result.data.messgae);
+      if (result.data.message) {
+        alert(result.data.message);
+        window.location.href = "/community";
+      } else {
+        alert("글쓰기 실패");
+      }
+    });
   };
 
   const getValue = (e) => {
@@ -40,27 +76,16 @@ export const WriteBoard = () => {
         }}
       />
       <button
-        onClick={() => {
-          console.log("title", title);
-          console.log("content", content);
-        }}
+        onClick={
+          writeBoard
+          //   () => {
+          //   console.log("title", title);
+          //   console.log("content", content);
+          // }
+        }
       >
         제출
       </button>
-
-      {/* <Form.Control
-        type="text"
-        // style={titleStyle}
-        placeholder="글 제목"
-        // ref={(ref) => (this.boardTitle = ref)}
-      />
-      <CKEditor
-        data={this.state.data}
-        onChange={this.onEditorChange}
-      ></CKEditor>
-      <Button onClick={this.writeBoard} block>
-        저장하기
-      </Button> */}
     </div>
   );
 };

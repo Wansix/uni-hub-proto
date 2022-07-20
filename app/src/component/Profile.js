@@ -14,15 +14,8 @@ export const Profile = () => {
   );
   const [nickName, setNickName] = useState("nick");
 
-  // 지갑이 언락되어있고, 연결 안되어있을 때 연결 시도
   useEffect(() => {
-    kaikasApi.isUnlocked().then((isUnlocked) => {
-      if (isUnlocked === true) {
-        kaikasApi.isEnabled().then((isEnabled) => {
-          connetWallet();
-        });
-      }
-    });
+    kaikasApi.autoConnectWallet(connectWallet);
   }, []);
 
   const test = async () => {
@@ -33,7 +26,7 @@ export const Profile = () => {
     unihubNFTApi.tokenURI(setProfileImgUrl);
   };
 
-  const connetWallet = async () => {
+  const connectWallet = async () => {
     const account = await kaikasApi.connectKaikasWallet();
     if (account) {
       const frontAccount = account.substr(0, 4);
@@ -49,7 +42,7 @@ export const Profile = () => {
     <div className="profile">
       <div className="wallet-connect">
         <div>
-          <button onClick={connetWallet}>connect</button>
+          <button onClick={connectWallet}>connect</button>
           <button onClick={test}>test</button>
         </div>
 

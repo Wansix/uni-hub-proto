@@ -23,6 +23,31 @@ module.exports = {
   isUnlocked: async () => {
     return await klaytn._kaikas.isUnlocked();
   },
+  // kaikasApi.isUnlocked().then((isUnlocked) => {
+  //   //현재 지갑이 unlock일 때 현재 홈페이지가 지갑에 접근 할 수 있도록 승인 요청
+  //   if (isUnlocked === true) {
+  //     kaikasApi.isEnabled().then((isEnabled) => {
+  //       if (isEnabled === false) {
+  //         connetWallet();
+  //       }
+  //     });
+  //   }
+  // });
+
+  autoConnectWallet: async (connectWallet) => {
+    await module.exports.isUnlocked().then(async (isUnlocked) => {
+      //현재 지갑이 unlock일 때 현재 홈페이지가 지갑에 접근 할 수 있도록 승인 요청
+      if (isUnlocked === true) {
+        connectWallet();
+      }
+    });
+  },
+
+  getCurrentAccount: () => {
+    if (klaytn.selectedAddress === undefined) return 0;
+
+    return klaytn.selectedAddress;
+  },
 
   getBlockNumber: (setBlockNumber) => {
     const caver = new Caver(endpoint);
@@ -86,7 +111,7 @@ module.exports = {
       const accounts = await klaytn.enable();
       const account = accounts[0];
 
-      console.log(accounts);
+      // console.log(accounts);
 
       return account;
     } catch (e) {
