@@ -1,14 +1,14 @@
 import React from "react";
 import { CKEditor } from "ckeditor4-react";
-import { Button, Form } from "react-bootstrap";
 import { useState } from "react";
 import axios from "axios";
 axios.defaults.withCredentials = true;
 
 const kaikasApi = require("../api/kaikasApi.js");
+const unihubNFTApi = require("../api/unihubNFTApi.js");
 const headers = { withCredentials: true };
 
-const unihubServerURL = "http://localhost:8080";
+const unihubServerURL = process.env.REACT_APP_UNIHUB_SERVER_URL;
 
 export const WriteBoard = () => {
   const [title, setTitle] = useState("");
@@ -34,24 +34,28 @@ export const WriteBoard = () => {
       return;
     }
 
-    // console.log("query", this.props.location.query);
-    const url = `${unihubServerURL}/board/write`;
-    const send_param = {
-      headers,
-      // id: this.props.location.query._id,
-      title: title,
-      content: content,
-      address: address,
-    };
+    unihubNFTApi.getUserInfo().then((userInfo) => {
+      const url = `${unihubServerURL}/board/write`;
 
-    axios.post(url, send_param).then((result) => {
-      console.log(result.data.messgae);
-      if (result.data.message) {
-        alert(result.data.message);
-        window.location.href = "/community";
-      } else {
-        alert("글쓰기 실패");
-      }
+      const send_param = {
+        headers,
+        // id: this.props.location.query._id,
+        title: title,
+        content: content,
+        address: address,
+        nickName: userInfo.name,
+        profileImgUrl: userInfo.Profile_IMG_url,
+      };
+
+      axios.post(url, send_param).then((result) => {
+        console.log(result.data.message);
+        if (result.data.message) {
+          alert(result.data.message);
+          window.location.href = "/community";
+        } else {
+          alert("글쓰기 실패");
+        }
+      });
     });
   };
 

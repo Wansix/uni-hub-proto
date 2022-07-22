@@ -18,6 +18,7 @@ const Header = () => {
         <Nav.Link href="/nftInfo">NFT정보</Nav.Link>
         <Nav.Link href="/mintInfo">mintComing</Nav.Link>
         <Nav.Link href="/mint">Mint</Nav.Link>
+        <Nav.Link href="/mymenu">myMenu</Nav.Link>
       </div>
     </div>
   );

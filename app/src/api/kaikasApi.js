@@ -1,5 +1,6 @@
 const CaverExtKAS = require("caver-js-ext-kas");
 const Caver = require("caver-js");
+const contractABI = require("../abi/mintNFT.json");
 require("dotenv").config();
 
 const klaytn = window.klaytn;
@@ -9,6 +10,7 @@ const chainIdBaobab = process.env.REACT_APP_CHAIN_ID_BAOBAB;
 const accessKeyId = process.env.REACT_APP_KAS_ACCESS_KEY_ID;
 const secretAccessKey = process.env.REACT_APP_KAS_SECRET_ACCRESS_KEY;
 const endpoint = process.env.REACT_APP_ENDPOINT;
+const contractAddress = process.env.REACT_APP_UNIHUB_NFT_CONTRACT;
 console.log("kaikas hi");
 
 module.exports = {
@@ -35,11 +37,14 @@ module.exports = {
   // });
 
   autoConnectWallet: async (connectWallet) => {
-    await module.exports.isUnlocked().then(async (isUnlocked) => {
+    return await module.exports.isUnlocked().then(async (isUnlocked) => {
       //현재 지갑이 unlock일 때 현재 홈페이지가 지갑에 접근 할 수 있도록 승인 요청
       if (isUnlocked === true) {
-        connectWallet();
+        await connectWallet();
       }
+
+      console.log("auto connect!!");
+      return;
     });
   },
 
@@ -154,6 +159,32 @@ module.exports = {
       })
       .once("receipt", (receipt) => {
         console.log("receipt", receipt);
+      })
+      .once("error", (error) => {
+        console.log("error", error);
+      });
+  },
+
+  // myContract.methods.myMethod(123).encodeABI();
+
+  executeContract: async (_to, _value, abi) => {
+    const caver = new Caver(klaytn);
+
+    return await caver.klay
+      .sendTransaction({
+        type: "SMART_CONTRACT_EXECUTION",
+        from: klaytn.selectedAddress,
+        to: _to,
+        data: abi,
+        gas: 8000000,
+        value: caver.utils.toPeb(_value, "KLAY"),
+      })
+      .once("transactionHash", (transactionHash) => {
+        console.log("txHash", transactionHash);
+      })
+      .once("receipt", (receipt) => {
+        console.log("receipt", receipt);
+        return receipt;
       })
       .once("error", (error) => {
         console.log("error", error);

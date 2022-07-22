@@ -3,6 +3,9 @@
 @import "components/header.css";
 @import "components/container.css";
 @import "components/profile.css";
+@import "components/board.css";
+@import "components/content.css";
+@import "components/mint.css";
 
 .App {
   display: flex;
