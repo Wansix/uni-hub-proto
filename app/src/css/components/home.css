@@ -1,0 +1,24 @@
+.home-wrapper {
+  padding: 10px 20px;
+}
+
+.home-wrapper__header {
+  width: 100%;
+  min-height: 30vh;
+  background-color: pink;
+
+  margin-bottom: 20px;
+}
+
+.TopNFT-wrapper {
+  margin-top: 10px;
+  padding: 5px;
+}
+
+.TopNFT-header {
+  background-color: azure;
+  padding: 10px 0px;
+}
+
+.TopNFT-header span {
+}

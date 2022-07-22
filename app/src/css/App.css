@@ -6,6 +6,9 @@
 @import "components/board.css";
 @import "components/content.css";
 @import "components/mint.css";
+@import "components/mymenu.css";
+@import "components/home.css";
+@import "components/topNFT.css";
 
 .App {
   display: flex;

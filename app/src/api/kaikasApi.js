@@ -141,6 +141,7 @@ module.exports = {
   },
 
   changedAccount: (func) => {
+    console.log("event!!");
     window.klaytn.on("accountsChanged", func);
   },
 

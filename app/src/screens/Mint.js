@@ -24,7 +24,7 @@ export const Mint = () => {
 
     const address = kaikasApi.getCurrentAccount();
     if (address === 0) {
-      alert("지갑을 연결 해주세요.");
+      alert("지갑을 연결 해주세요. mintNFT");
       return;
     }
 
