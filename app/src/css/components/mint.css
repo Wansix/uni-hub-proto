@@ -1,0 +1,50 @@
+.mint-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: aliceblue;
+  width: 100%;
+
+  min-height: 80vh;
+}
+
+.mint-left-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 50%;
+  padding-right: 30px;
+}
+
+.mint-right-container {
+  width: 50%;
+  padding-left: 30px;
+  font-size: 30px;
+}
+
+.mint-left-container img {
+  height: 300px;
+  width: 300px;
+  border-radius: 20%;
+}
+.mint-right-container button {
+  margin: 10px 0px;
+  padding: 10px 80px;
+  font-size: 30px;
+}
+
+.mint-info__item {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 0px;
+}
+
+.mint-info__item span {
+  margin: 10px 0px;
+
+  width: 150px;
+}
+
+.mint-info__item span:first-child {
+  margin-right: 50px;
+}

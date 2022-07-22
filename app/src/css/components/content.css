@@ -1,0 +1,91 @@
+.board-wrapper {
+  padding: 10px 15px;
+}
+.boardName {
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 10px;
+}
+
+.posting-wrapper {
+  padding: 10px 15px;
+  border: black solid 1px;
+  min-height: 80vh;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.posting-wrapper__header-title {
+  margin: 0px 5px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: black solid 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.posting-wrapper__header-title div:first-child {
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.posting-wrapper__header-title div:last-child {
+  font-size: 15px;
+}
+
+.posting-wrapper__header-title div:last-child span {
+  margin-left: 10px;
+}
+
+.posting-wrapper__header-info {
+  padding: 10px 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: black solid 1px;
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.posting-wrapper__header-info__profile {
+  display: flex;
+  align-items: center;
+}
+
+/* nickName & address */
+.posting-wrapper__header-info__profile div:nth-child(2) {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+/* nickName */
+.posting-wrapper__header-info__profile div:nth-child(2) span:first-child {
+  font-size: 25px;
+}
+
+.posting-wrapper__header-info__profile img {
+  width: 100px;
+  height: 100px;
+  border-radius: 30%;
+}
+
+.posting-wrapper__header-info__postInfo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.posting-wrapper__header-info__postInfo div {
+  margin-left: 10px;
+}
+
+.posting-wrapper__header-info__postInfo span {
+  margin-left: 5px;
+}
+
+.posting-wrapper__content {
+  padding: 20px 5px;
+}
